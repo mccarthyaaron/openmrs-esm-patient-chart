@@ -57,13 +57,19 @@ export function DashboardView({ dashboard, patientUuid, patient }: DashboardView
       setResolvedTitle(undefined);
     }
   }, [dashboard]);
+  
+  const isEncounterDashboard = dashboard.slot === 'patient-chart-encounters-dashboard-slot';
 
   return (
     <>
       <ExtensionSlot state={state} name="top-of-all-patient-dashboards-slot" />
       {!dashboard.hideDashboardTitle && resolvedTitle && <h1 className={styles.dashboardTitle}>{resolvedTitle}</h1>}
       <div className={styles.dashboardContainer}>
-        <ExtensionSlot key={dashboard.slot} name={dashboard.slot} className={styles.dashboard}>
+        <ExtensionSlot
+          key={dashboard.slot}
+          name={dashboard.slot}
+          className={classNames(styles.dashboard, isEncounterDashboard && styles.encounterDashboard)}
+        >
           {(extension) => {
             const { fullWidth = false } = widgetMetas[extension.id] || {};
             return (
