@@ -14,6 +14,11 @@
   margin: 1.3125rem;
 }
 
+.encounterDashboard {
+  margin: 0 !important;
+}
+  
+
 .dashboardContainer:not(:has([data-extension-slot-name='patient-chart-attachments-dashboard-slot'])) {
   container-name: dashboard;
   container-type: inline-size;
